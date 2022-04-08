@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +18,17 @@ class MainActivity : AppCompatActivity() {
 
         //画面を渡す、Intent
         btnStart.setOnClickListener {
-            val intent = Intent(this, ResultActivity::class.java)
-            //値を渡す
-            intent.putExtra("MY_ITEM",et.text.toString())
-            startActivity(intent)
+            //条件分岐、空文字
+            if(et.text.toString() =="" ){
+                //メッセージ、トースト
+                Toast.makeText(this, "文字を入力して", Toast.LENGTH_LONG).show();
 
+            }else{
+                val intent = Intent(this, ResultActivity::class.java)
+                //値を渡す
+                intent.putExtra("MY_ITEM",et.text.toString())
+                startActivity(intent)
+            }
         }
     }
 }
